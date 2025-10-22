@@ -2,127 +2,153 @@
 #include <string>
 using namespace std;
 
+const int MAX_MOKINIAI = 10;
+const int MAX_PAZYMIAI = 10;
+
 int main() {
-    double GBP_Bendras   = 0.8729;
-    double GBP_Pirkti    = 0.8600;
-    double GBP_Parduoti  = 0.9220;
-    double USD_Bendras   = 1.1793;
-    double USD_Pirkti    = 1.1460;
-    double USD_Parduoti  = 1.2340;
-    double INR_Bendras   = 104.6918;
-    double INR_Pirkti    = 101.3862;
-    double INR_Parduoti  = 107.8546;
-    double EUR_Bendras   = 1.0000;
-    double EUR_Pirkti    = 0.9800;
-    double EUR_Parduoti  = 1.0500;
+    string vardai[MAX_MOKINIAI];
+    int pazymiai[MAX_MOKINIAI][MAX_PAZYMIAI];
+    int kiek_pazymiu[MAX_MOKINIAI];
+    int mokiniu_kiekis = 0;
 
-    while (true) {
-        cout << "Valiutos keitimas" << endl;
-        cout << "Jus galite:" << endl;
-        cout << "1. Paliginti" << endl;
-        cout << "2. Pirkti" << endl;
-        cout << "3. Parduoti" << endl;
-        cout << "4. Exit" << endl;
-        cout << "Pasirinkite viena varianta: ";
-        string valiuta;
-        cin >> valiuta;
+    int pasirinkimas;
 
-        int pasirinkimas;
+    do {
+        cout << "---- MOKINIU PAZIMIU SISTEMA ----\n";
+        cout << "1. Prideti mokini\n";
+        cout << "2. Perziureti visus mokinius\n";
+        cout << "3. Perziureti konkretaus mokinio pazymius\n";
+        cout << "4. Atnaujinti pazymi\n";
+        cout << "5. Pasalinti mokini\n";
+        cout << "0. Iseiti\n";
+        cout << "Pasirinkite: ";
+        cin >> pasirinkimas;
 
-        if (valiuta == "1") {
-            cout << "Koki valiuta jus norite palyginti?" << endl;
-            cout << "1. GBP" << endl;
-            cout << "2. USD" << endl;
-            cout << "3. INR" << endl;
-            cin >> pasirinkimas;
-            if (pasirinkimas == 1)
-                cout << "1 EUR = " << GBP_Bendras << " GBP" << endl;
-            else if (pasirinkimas == 2)
-                cout << "1 EUR = " << USD_Bendras << " USD" << endl;
-            else if (pasirinkimas == 3)
-                cout << "1 EUR = " << INR_Bendras << " INR" << endl;
-        }
-
-        else if (valiuta == "2") {
-            cout << "Koki valiuta jus norite pirkti?" << endl;
-            cout << "1. GBP" << endl;
-            cout << "2. USD" << endl;
-            cout << "3. INR" << endl;
-            cin >> pasirinkimas;
-            double suma;
-            string patvirtinimas;
-
-            if (pasirinkimas == 1) {
-                cout << "Kiek EUR norite pirkti? ";
-                cin >> suma;
-                cout << "Reikes sumoketi: " << suma * GBP_Pirkti << " GBP - Toliau?: ";
-                cin >> patvirtinimas;
-                if (patvirtinimas == "Taip")
-                    cout << "Jus pirkote " << suma << " GBP" << endl;
-                else
-                    cout << "Gerai." << endl;
-            } else if (pasirinkimas == 2) {
-                cout << "Kiek EUR norite pirkti? ";
-                cin >> suma;
-                cout << "Reikes sumoketi: " << suma * USD_Pirkti << " USD - Toliau?: ";
-                cin >> patvirtinimas;
-                if (patvirtinimas == "Taip")
-                    cout << "Jus pirkote " << suma << " USD" << endl;
-                else
-                    cout << "Gerai." << endl;
-            } else if (pasirinkimas == 3) {
-                cout << "Kiek EUR norite pirkti? ";
-                cin >> suma;
-                cout << "Reikes sumoketi: " << suma * INR_Pirkti << " INR - Toliau?: ";
-                cin >> patvirtinimas;
-                if (patvirtinimas == "Taip")
-                    cout << "Jus pirkote " << suma << " INR" << endl;
-                else
-                    cout << "Gerai." << endl;
+        switch (pasirinkimas) {
+        case 1: {
+            if (mokiniu_kiekis >= MAX_MOKINIAI) {
+                cout << "Maksimalus mokiniu kiekis pasiektas!\n";
+                break;
             }
-        }
 
-        else if (valiuta == "3") {
-            cout << "Koki valiuta jus norite parduoti?" << endl;
-            cout << "1. GBP" << endl;
-            cout << "2. USD" << endl;
-            cout << "3. INR" << endl;
-            cin >> pasirinkimas;
-            double suma;
-            string patvirtinimas;
+            cout << "Iveskite mokinio varda: ";
+            cin >> vardai[mokiniu_kiekis];
 
-            if (pasirinkimas == 1) {
-                cout << "Kiek GBP norite parduoti? ";
-                cin >> suma;
-                cout << "Gausite: " << suma / GBP_Parduoti << " EUR - Toliau?: ";
-                cin >> patvirtinimas;
-                if (patvirtinimas == "Taip")
-                    cout << "Jus pardavete " << suma << " GBP" << endl;
-                else
-                    cout << "Gerai." << endl;
-            } else if (pasirinkimas == 2) {
-                cout << "Kiek USD norite parduoti? ";
-                cin >> suma;
-                cout << "Gausite: " << suma / USD_Parduoti << " EUR - Toliau?: ";
-                cin >> patvirtinimas;
-                if (patvirtinimas == "Taip")
-                    cout << "Jus pardavete " << suma << " USD" << endl;
-                else
-                    cout << "Gerai." << endl;
-            } else if (pasirinkimas == 3) {
-                cout << "Kiek INR norite parduoti? ";
-                cin >> suma;
-                cout << "Gausite: " << suma / INR_Parduoti << " EUR - Toliau?: ";
-                cin >> patvirtinimas;
-                if (patvirtinimas == "Taip")
-                    cout << "Jus pardavete " << suma << " INR" << endl;
-                else
-                    cout << "Gerai." << endl;
+            cout << "Kiek pazymiu norite ivesti (iki 10): ";
+            cin >> kiek_pazymiu[mokiniu_kiekis];
+
+            if (kiek_pazymiu[mokiniu_kiekis] > MAX_PAZYMIAI)
+                kiek_pazymiu[mokiniu_kiekis] = MAX_PAZYMIAI;
+
+            for (int j = 0; j < kiek_pazymiu[mokiniu_kiekis]; j++) {
+                cout << j + 1 << "-as pazymys: ";
+                cin >> pazymiai[mokiniu_kiekis][j];
             }
-            }
-        else if (valiuta == "4") {
+
+            mokiniu_kiekis++;
             break;
         }
+
+        case 2: {
+            if (mokiniu_kiekis == 0) {
+                cout << "Nera mokiniu!\n";
+                break;
+            }
+
+            for (int i = 0; i < mokiniu_kiekis; i++) {
+                cout << i + 1 << ". " << vardai[i] << " - ";
+                for (int j = 0; j < kiek_pazymiu[i]; j++) {
+                    cout << pazymiai[i][j] << " ";
+                }
+                cout << endl;
+            }
+            break;
         }
-        return 0;
+
+        case 3: {
+            string vardas;
+            cout << "Iveskite mokinio varda: ";
+            cin >> vardas;
+            bool rastas = false;
+
+            for (int i = 0; i < mokiniu_kiekis; i++) {
+                if (vardai[i] == vardas) {
+                    cout << vardai[i] << " pazymiai: ";
+                    for (int j = 0; j < kiek_pazymiu[i]; j++) {
+                        cout << pazymiai[i][j] << " ";
+                    }
+                    cout << endl;
+                    rastas = true;
+                    break;
+                }
+            }
+
+            if (!rastas) cout << "Mokinys nerastas!\n";
+            break;
+        }
+
+        case 4: {
+            string vardas;
+            cout << "Iveskite mokinio varda: ";
+            cin >> vardas;
+            bool rastas = false;
+
+            for (int i = 0; i < mokiniu_kiekis; i++) {
+                if (vardai[i] == vardas) {
+                    rastas = true;
+                    cout << "Kurio pazymio numeri norite pakeisti (1-" << kiek_pazymiu[i] << "): ";
+                    int nr;
+                    cin >> nr;
+                    if (nr < 1 || nr > kiek_pazymiu[i]) {
+                        cout << "Neteisingas numeris!\n";
+                        break;
+                    }
+                    cout << "Naujas pazymys: ";
+                    cin >> pazymiai[i][nr - 1];
+                    cout << "Pazymys atnaujintas!\n";
+                    break;
+                }
+            }
+
+            if (!rastas) cout << "Mokinys nerastas!\n";
+            break;
+        }
+
+        case 5: {
+            string vardas;
+            cout << "Iveskite mokinio varda, kuri norite pasalinti: ";
+            cin >> vardas;
+            bool rastas = false;
+
+            for (int i = 0; i < mokiniu_kiekis; i++) {
+                if (vardai[i] == vardas) {
+                    for (int j = i; j < mokiniu_kiekis - 1; j++) {
+                        vardai[j] = vardai[j + 1];
+                        kiek_pazymiu[j] = kiek_pazymiu[j + 1];
+                        for (int k = 0; k < MAX_PAZYMIAI; k++) {
+                            pazymiai[j][k] = pazymiai[j + 1][k];
+                        }
+                    }
+                    mokiniu_kiekis--;
+                    rastas = true;
+                    cout << "Mokinys pasalintas!\n";
+                    break;
+                }
+            }
+
+            if (!rastas) cout << "Mokinys nerastas!\n";
+            break;
+        }
+
+        case 0:
+            cout << "Programa baigta.\n";
+            break;
+
+        default:
+            cout << "Neteisingas pasirinkimas!\n";
+        }
+
+    } while (pasirinkimas != 0);
+
+    return 0;
 }
